@@ -23,6 +23,9 @@ spec:
           mountPath: /music
         - name: config
           mountPath: /config
+        - name: settings
+          mountPath: /app/config/settings.json
+          subPath: settings.json
         readinessProbe:
           httpGet:
             path: /
@@ -50,3 +53,7 @@ spec:
       resources:
         requests:
           storage: 1Gi
+  volumes:
+  - name: settings
+    configMap:
+      name: mstream-config
