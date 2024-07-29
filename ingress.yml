@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+  name: mstream-ingress
+spec:
+  rules:
+  - host: augustokrk-kb.my.kube.um.edu.ar  # Cambia esto a tu dominio
+    http:
+      paths:
+      - backend:
+          service:
+            name: mstream
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
