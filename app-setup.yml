@@ -11,8 +11,12 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
-          wget -O /music/cancion1.mp3 "https://drive.google.com/uc?export=download&id=1ckyF6BsGLh9alUhLP8-3XDnX0DcFUxM-"
-          wget -O /music/cancion2.mp3 "https://drive.google.com/uc?export=download&id=1WtmKlPASnAX_xUyQDDZer-waZ740m1MQ"
+          if [ ! -f /music/cancion1.mp3 ]; then
+            wget -O /music/cancion1.mp3 "https://drive.google.com/uc?export=download&id=1ckyF6BsGLh9alUhLP8-3XDnX0DcFUxM-"
+          fi
+          if [ ! -f /music/cancion2.mp3 ]; then
+            wget -O /music/cancion2.mp3 "https://drive.google.com/uc?export=download&id=1WtmKlPASnAX_xUyQDDZer-waZ740m1MQ"
+          fi
         volumeMounts:
         - name: music
           mountPath: /music

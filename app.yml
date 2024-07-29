@@ -23,6 +23,18 @@ spec:
           mountPath: /music
         - name: config
           mountPath: /config
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 20
   volumeClaimTemplates:
   - metadata:
       name: music
