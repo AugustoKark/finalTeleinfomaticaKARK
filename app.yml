@@ -38,6 +38,10 @@ spec:
             port: 3000
           initialDelaySeconds: 15
           periodSeconds: 20
+      volumes:
+      - name: settings
+        configMap:
+          name: mstream-config
   volumeClaimTemplates:
   - metadata:
       name: music
@@ -53,7 +57,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-  volumes:
-  - name: settings
-    configMap:
-      name: mstream-config
